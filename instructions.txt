@@ -1,0 +1,63 @@
+# Silent Coding Legend: Setup and Usage Instructions
+
+## Setup Instructions
+
+1. Environment Setup:
+   - Create a virtual environment: `python3 -m venv .venv`
+   - Activate it: `source .venv/bin/activate`
+   - Install all dependencies: `pip install -r requirements.txt`
+
+2. API Key Configuration:
+   - Create a `.env` file in the project root directory
+   - Add your OpenAI API key:
+     ```
+     OPENAI_API_KEY=your-openai-api-key
+     ```
+   - For LangSmith tracing (optional):
+     ```
+     LANGSMITH_API_KEY=your-langsmith-key
+     LANGSMITH_PROJECT=pr-new-pomelo-24
+     LANGSMITH_ENDPOINT=https://api.smith.langchain.com
+     LANGSMITH_TRACING=true
+     ```
+
+3. Running the Application:
+
+   A. Web Interface:
+   - Run: `streamlit run webinterface.py`
+   - Access in browser at: http://localhost:8501
+
+   B. Command Line Interface:
+   - Run: `python chat_cli.py`
+
+## Usage Guide
+
+### Conversation Examples:
+- Python programming questions: "Write a function to calculate Fibonacci numbers"
+- Cybersecurity topics: "Explain how a buffer overflow attack works"
+- Blockchain concepts: "How do Ethereum smart contracts work?"
+
+### System Functions:
+- The Supervisor Agent will automatically assign tasks to specialist agents
+- Each specialist provides its expertise
+- Final answers are synthesized from all specialist contributions
+- Conversation history is maintained for context
+
+### Debugging with LangSmith:
+- If you've configured LangSmith, view traces at https://smith.langchain.com
+- Check individual agent reasoning and contributions
+- Monitor token usage and performance
+
+## Customization
+
+To modify agent behavior:
+1. Edit the prompts in `langgrapsupervisoragent.py`
+2. Add new specialist agents by creating new worker agents
+3. Customize the UI by modifying `webinterface.py`
+
+## Troubleshooting
+
+- If you get API key errors, check your `.env` file formatting
+- "Module not found" errors: Ensure all packages are installed correctly
+- LangSmith not tracing: Make sure your API key is valid and tracing is enabled
+- For best performance, use the gpt-4o model
